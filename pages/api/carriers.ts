@@ -14,27 +14,6 @@ const requestHandler = (req: NextApiRequest, res: NextApiResponse) => {
         catchError(error, res);
       }
     },
-    POST: async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-        return res.status(201).json({ message: 'POST request' });
-      } catch (error) {
-        catchError(error, res);
-      }
-    },
-    PATCH: async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-        return res.status(200).json({ message: 'PATCH request' });
-      } catch (error) {
-        catchError(error, res);
-      }
-    },
-    DELETE: async (req: NextApiRequest, res: NextApiResponse) => {
-      try {
-        return res.status(200).json({ message: 'DELETE request' });
-      } catch (error) {
-        catchError(error, res);
-      }
-    },
   };
 
   const response = methodHandler[method];

@@ -11,6 +11,13 @@ export interface ResponseFunctions {
   OPTIONS?: Function;
 }
 
+export interface UserModel {
+  id?: string;
+  carrierId: string;
+  username: string;
+  password?: string;
+}
+
 // Functions
 export const catchError = (error: any, res: NextApiResponse) => {
   if (error instanceof AppError) {
