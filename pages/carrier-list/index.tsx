@@ -18,7 +18,7 @@ function Home({ carriers }: ICarriersProps) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/carriers');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/api/carriers`);
   const carriers = await res.json();
 
   return {

@@ -19,7 +19,6 @@ class CarriersService {
       type: QueryTypes.SELECT,
     });
 
-    console.log(data);
     return data;
   }
 
