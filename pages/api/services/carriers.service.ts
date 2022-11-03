@@ -1,10 +1,6 @@
 import { QueryTypes, Sequelize } from 'sequelize';
 import db from '../../../db/connect';
-
-type Carrier = {
-  id?: string;
-  name: string;
-};
+import { Carrier } from '../../../utils';
 
 class CarriersService {
   sequelize: Sequelize;
@@ -17,6 +13,21 @@ class CarriersService {
     const sql = `
         SELECT name
         FROM carriers
+    `;
+
+    const data: any = await this.sequelize.query(sql, {
+      type: QueryTypes.SELECT,
+    });
+
+    console.log(data);
+    return data;
+  }
+
+  async getCarrierById(id: string): Promise<Carrier[]> {
+    const sql = `
+        SELECT *
+        FROM carriers
+        WHERE id = '${id}'
     `;
 
     const data: any = await this.sequelize.query(sql, {

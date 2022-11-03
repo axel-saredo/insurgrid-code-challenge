@@ -9,7 +9,12 @@ class Database {
       process.env.DATABASE_CONNECTION_STRING || '',
       {
         dialect: 'postgres',
-        dialectOptions: {},
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        },
       }
     );
   }

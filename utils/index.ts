@@ -13,9 +13,15 @@ export interface ResponseFunctions {
 
 export interface UserModel {
   id?: string;
-  carrierId: string;
+  carrier_id: string;
   username: string;
   password?: string;
+}
+
+export interface Carrier {
+  id?: string;
+  name: string;
+  url: string;
 }
 
 // Functions

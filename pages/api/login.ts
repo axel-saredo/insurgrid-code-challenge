@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { catchError, ResponseFunctions } from '../../utils';
+import carriersService from './services/carriers.service';
+import playwrightService from './services/playwright.service';
 import userService from './services/user.service';
 
 const requestHandler = (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +18,19 @@ const requestHandler = (req: NextApiRequest, res: NextApiResponse) => {
         if (user) {
           const isSamePassword = comparePassword(password, user[0].password!);
           if (isSamePassword) {
+            console.log(user[0].password);
+
             delete user[0].password;
+
+            const carrierId = user[0].carrier_id;
+            const carrierData = await carriersService.getCarrierById(carrierId);
+
+            const carrierUrl = carrierData[0].url;
+            await playwrightService.downloadDeclarationPage(
+              username,
+              password,
+              carrierUrl
+            );
 
             return res.status(200).json(user[0]);
           } else {
